@@ -1,4 +1,4 @@
-// PlaylistSearcher.java
+
 package snhu.jukebox.playlist;
 
 import java.util.ArrayList;
