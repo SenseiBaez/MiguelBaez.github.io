@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"music.artist"},{"l":"snhu.jukebox.playlist"},{"l":"snhu.jukebox.playlist.tests"},{"l":"snhu.student.playlists"}];updateSearchResults();
