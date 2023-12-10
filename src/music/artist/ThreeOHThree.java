@@ -17,8 +17,8 @@ public class ThreeOHThree {
     public ArrayList<Song> getThreeOHThreeSongs() {
     	
     	 albumTracks = new ArrayList<Song>();                                   //Instantiate the album so we can populate it below
-    	 Song track1 = new Song("DONTTRUSTME", "3OH!3");             //Create a song
-         Song track2 = new Song("STARSSTRUKK", "3OH!3");         //Create another song
+    	 Song track1 = new Song("DONTTRUSTME", "3OH!3");                        //Create a song
+         Song track2 = new Song("STARSSTRUKK", "3OH!3");                        //Create another song
          Song track3 = new Song("We Are Youn", "3OH!3");
          this.albumTracks.add(track1);                                          //Add the first song to song list for the Beatles
          this.albumTracks.add(track2);                                          //Add the second song to song list for the Beatles 
