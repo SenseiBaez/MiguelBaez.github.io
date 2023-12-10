@@ -3,7 +3,37 @@ package snhu.jukebox.playlist;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Queue;
+
+/**
+ * JukeboxPlayerGUI.java
+ * 
+ * Author: Miguel Baez
+ * Contact: miguel.baez-flores@snhu.edu
+ * Date: December 10, 2023
+ * Version: 3.0
+ * 
+ * Purpose:
+ * The JukeboxPlayerGUI class is the graphical interface for the Jukebox Playlist System. It provides
+ * an interactive platform for users to execute commands related to music playlist management, such as
+ * searching for songs or playlists. The class integrates with the Jukebox and CommandManager to handle
+ * these operations.
+ * 
+ * Implementation Notes:
+ * - The GUI is built using Java Swing components, including JFrame, JTextField, JTextArea, and JButton.
+ * - The Nimbus Look and Feel is set for a modern appearance.
+ * - The createAndShowGUI method initializes the GUI components and layout.
+ * - The executeCommand method processes user commands and displays the results in the output area.
+ * - The GUI supports basic command execution such as searching for songs or playlists and exiting the 
+ *   application.
+ * 
+ * Usage:
+ * This class should be used as the primary user interface in the Jukebox Playlist System. Users can 
+ * interact with the system through a friendly and intuitive GUI to manage and explore music playlists.
+ * 
+ * Revision History:
+ * - 3.0: Initial release. Cleaned up class and added header for class explanation.
+ */
+
 
 public class JukeboxPlayerGUI {
 
@@ -13,8 +43,8 @@ public class JukeboxPlayerGUI {
     private JTextField commandInput;
 
     public JukeboxPlayerGUI() {
-        jukebox = new Jukebox(); // Initialize with your playlists
-        cm = new CommandManager(); // This needs to work with the GUI now
+        jukebox = new Jukebox(); // Initialize with the playlists created
+        cm = new CommandManager();
         createAndShowGUI();
     }
 
@@ -37,7 +67,7 @@ public class JukeboxPlayerGUI {
         // Button to execute commands with an icon and tooltip
         JButton executeButton = new JButton("Execute Command");
         executeButton.setToolTipText("Click to execute the command.");
-        // If you have an icon, you can set it like this:
+        // Helpful tip if I decide to add in an icon later on...
         // executeButton.setIcon(new ImageIcon("path/to/execute_icon.png"));
 
         // Text area to display results or messages with enhanced fonts and colors
@@ -58,6 +88,12 @@ public class JukeboxPlayerGUI {
         // Button action to execute the command
         executeButton.addActionListener(e -> executeCommand(commandInput.getText()));
 
+        // Start-up message with instructions
+        outputArea.append("Welcome to Jukebox Player!\n");
+        outputArea.append("Type 'find song [song name]' to search for a playlist by song.\n");
+        outputArea.append("Type 'find playlist [playlist name]' to search for a playlist by name.\n");
+        outputArea.append("Type 'quit' to exit the application.\n");
+
         // Set the frame size and make it visible
         frame.pack();
         frame.setVisible(true);
@@ -65,37 +101,20 @@ public class JukeboxPlayerGUI {
 
     private void executeCommand(String command) {
         commandInput.setText(""); // Clear the input field
-        if ("quit".equalsIgnoreCase(command)) {
+
+        if ("quit".equalsIgnoreCase(command.trim())) {
             outputArea.append("Exiting the Playlist Loader...\n");
             System.exit(0);
         } else {
             String response = cm.parseCommand(command);
             outputArea.append(response + "\n");
-
-            if (response.startsWith("The song")) {
-                // Response from 'find' command is displayed directly.
-            } else if (!response.isEmpty()) {
-                // It's a playlist command, so we display the playlist content.
-                Queue<PlayableSong> playlist = jukebox.getPlaylist(response);
-                if (playlist.isEmpty()) {
-                    outputArea.append("Playlist found! Try another song!\n");
-                } else {
-                    outputArea.append("Playlist found: " + response + "\n");
-                    for (PlayableSong song : playlist) {
-                        // Assuming PlayableSong has getTitle() and getArtist() methods.
-                        outputArea.append(song.getTitle() + " by " + song.getArtist() + "\n");
-                    }
-                }
-            } else {
-                outputArea.append("Please enter a valid command.\n");
-            }
         }
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(JukeboxPlayerGUI::new);
     }
 }
-
 
 
