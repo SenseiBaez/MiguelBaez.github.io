@@ -19,7 +19,7 @@ expand the functionality of the GUI.
   </a>
 </center>
 
-<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/src/snhu/jukebox/playlist/JukeboxPlayerGUI.java">code</a>.</code>
+<code>Click here to see the report and the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/tree/Enhancement-One">code</a>.</code>
 
 #### Algorithms and Data Structures
 
@@ -31,7 +31,7 @@ The second artifact is implementing a HashMap in the student playlists and creat
   </a>
 </center>
 
-<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/src/snhu/student/playlists/PlaylistGUI.java">code</a>.</code>
+<code>Click here to see the report and the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/tree/Enhacnement-Two">code</a>.</code>
 
 #### Databases
 
@@ -43,5 +43,5 @@ The third artifact was creating a database from all the user data from the Jukeb
   </a>
 </center>
 
-<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/PlaylistDataGUI.py">code</a>.</code>
+<code>Click here to see the report and the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/tree/Enhancement-Three">code</a>.</code>
 
