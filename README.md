@@ -99,7 +99,7 @@ I incorporated feedback into the code, see below. My original code did not have 
 
 ### <pre align="center">Original Project </pre>
 The code for the first two enhancements was shared as the code used was the original jukebox player code. The original jukebox player did not have the functionality to search for a playlist nor the ability to search for a song.
-This was the functionality that was added by me as well as creating the actual GUI to demonstrate the added functionality. The original student playlists did not have a HashMap implemented. Here is the code for the original project.
+This was the functionality that was added by me as well as creating the actual GUI to demonstrate the added functionality. The original student playlists did not have a HashMap implemented. Here is the code for one of the original student playlists.
 
 ```
 public class MiguelBaez_Playlist {
@@ -165,7 +165,7 @@ public class MiguelBaez_Playlist {
 ```
 
 ### <pre align="center">Final Design </pre>
-Here is the final version of the code of one of the student playlist looks liek with the implementation of the HashMap as well as what the GUI looks like.
+Here is the final version of the code of one of the student playlist looks like with the implementation of the HashMap as well as what the GUI looks like.
 ```
 
 
