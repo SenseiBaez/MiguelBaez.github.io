@@ -165,216 +165,85 @@ public class MiguelBaez_Playlist {
 ```
 
 ### <pre align="center">Final Design </pre>
-Here is the final version of the code with the implementation of the HashMap as well as what the GUI looks like.
+Here is the final version of the code of one of the student playlist looks liek with the implementation of the HashMap as well as what the GUI looks like.
 ```
 
-// Class declaration for the PlaylistGUI
-public class PlaylistGUI {
 
-	// Declaration of GUI components
-    private JFrame frame; // Main window
-    private JTextField songTitleField, artistField; // Text fields for input
-    private JTextArea resultArea; // Text area for showing results
-    private JComboBox<String> playlistSelector, searchTypeSelector, songActionSelector, searchActionSelector; // combo boxes for different selections
-    private Map<String, StudentPlaylist> playlists; // Map to hold the playlists
-    private JButton performSongActionButton, performSearchActionButton; // Buttons for actions
-    private String lastFoundPlaylistName; // To store the name of the last found playlist
-
-    public PlaylistGUI() {
-        playlists = new HashMap<>(); // Initializing the playlists map
-        
-        // Adding the user playlists
-        playlists.put("MiguelBaez_Playlist", new MiguelBaez_Playlist());
-        playlists.put("CassieBaez_Playlist", new CassieBaez_Playlist());
-        playlists.put("DavidPaul_Playlist", new DavidPaul_Playlist());
-        playlists.put("HaiNguyen_Playlist", new HaiNguyen_Playlist());
-        playlists.put("JuanGarcia_Playlist", new JuanGarcia_Playlist());
-        playlists.put("KarenSoto_Playlist", new KarenSoto_Playlist());
-        playlists.put("KatieEarnst_Playlist", new KatieEarnst_Playlist());
-        // Add other playlists as needed
-
-        initializeUI(); // Initializes the User Interface
-    }
-
-    // Method to initialize the user interface
-    private void initializeUI() {
-        frame = new JFrame("Playlist Manager"); // Creates the main window
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation
-        frame.setLayout(new BorderLayout()); // Sets the layout manager
-        
-        // Initialize the text fields and combo boxes
-        songTitleField = new JTextField(20); // Field for user entry
-        playlistSelector = new JComboBox<>(playlists.keySet().toArray(new String[0])); // Selector for the playlists
-        searchTypeSelector = new JComboBox<>(new String[]{"By Title", "By Artist"}); // Selector for the search type
-        songActionSelector = new JComboBox<>(new String[]{"Add Song", "Remove Song"}); // Selector for song action
-        searchActionSelector = new JComboBox<>(new String[]{"Search Song", "Search by Artist"}); // Selector for search action
-        
-        // Initialize buttons for performing selected actions
-        performSongActionButton = new JButton("Perform Action"); // Button for performing song actions
-        performSearchActionButton = new JButton("Search"); // Button for performing search actions
-        JButton displayButton = new JButton("Display Playlist"); // Button for displaying playlists that are selected or found
-
-        resultArea = new JTextArea(10, 40); // Text area for displaying the results from selections and inputs
-        resultArea.setEditable(false); // Making the result area non-editable
-
-        // Setting action listeners for buttons
-        performSongActionButton.addActionListener(e -> performSongAction());
-        performSearchActionButton.addActionListener(e -> performSearchAction());
-        displayButton.addActionListener(e -> displayPlaylist());
-
-        // Creating the panel and the needed components for the panel
-        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.add(playlistSelector);
-        topPanel.add(searchTypeSelector);
-        topPanel.add(songTitleField);
-        topPanel.add(songActionSelector);
-        topPanel.add(performSongActionButton);
-        topPanel.add(searchActionSelector);
-        topPanel.add(performSearchActionButton);
-        topPanel.add(displayButton);
-
-        // Creating a scroll pane for the top and side panels as necessary
-        JScrollPane topPanelScrollPane = new JScrollPane(topPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-        // Adding components to the frame 
-        frame.add(new JScrollPane(resultArea), BorderLayout.CENTER);
-        frame.add(topPanelScrollPane, BorderLayout.SOUTH);
-
-        // Finalizing the frame
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
+public class MiguelBaez_Playlist implements StudentPlaylist {
     
-    // Method to perform song actions based on user selections
-    private void performSongAction() {
-    	String selectedAction = (String) songActionSelector.getSelectedItem();
-        if ("Add Song".equals(selectedAction)) {
-            addSong();
-        } else if ("Remove Song".equals(selectedAction)) {
-            removeSong();
-        }
+    private LinkedList<PlayableSong> playlist;
+    private Map<String, PlayableSong> songMap; // Hashmap for efficient song lookup
+
+    public MiguelBaez_Playlist() {
+        playlist = new LinkedList<>();
+        songMap = new HashMap<>();
+
+        // Initialize Metallica songs
+        Metallica metallica = new Metallica();
+        ArrayList<Song> metallicaTracks = metallica.getMetallicaSongs();
+        addSongs(metallicaTracks);
+        
+        // Initialize Imagine Dragons songs
+        ImagineDragons imagineDragonsBand = new ImagineDragons();
+        ArrayList<Song> imagineDragonsTracks = imagineDragonsBand.getImagineDragonsSongs();
+        addSongs(imagineDragonsTracks); // Assuming we want all their tracks
+        
+        // Initialize ThreeOHThree songs
+        ThreeOHThree threeOHthree = new ThreeOHThree();
+        ArrayList<Song> threeOHthreeTracks = threeOHthree.getThreeOHThreeSongs();
+        addSongs(threeOHthreeTracks);
+        
+        // Initialize Tame Impala songs
+        TameImpala tameImpala = new TameImpala();
+        ArrayList<Song> tameImpalasTracks = tameImpala.getTameImpalaSongs();
+        addSongs(tameImpalasTracks);
+        
+        // Initialize Glass Animals songs
+        GlassAnimals glassAnimals = new GlassAnimals();
+        ArrayList<Song> glassAnimalsTracks = glassAnimals.getGlassAnimalsSongs();
+        addSongs(glassAnimalsTracks);
     }
 
-    // Method to perform search action based on user input and user selection
-    private void performSearchAction() {
-        String searchText = songTitleField.getText().trim();
-        String selectedAction = (String) searchActionSelector.getSelectedItem();
-
-        if (searchText.isEmpty()) {
-            resultArea.append("Please enter a search query.\n");
-            return;
-        }
-
-        if ("Search Song".equals(selectedAction)) {
-            searchSong(searchText);
-        } else if ("Search by Artist".equals(selectedAction)) {
-            searchByArtist(searchText);
-        }
-    }
-
-    // Method to add songs to the playlists
-    private void addSong() {
-        String title = songTitleField.getText().trim();
-        if (title.isEmpty()) {
-            resultArea.append("Please enter a song title to add.\n");
-            return;
-        }
-
-        String selectedPlaylistName = (String) playlistSelector.getSelectedItem();
-        StudentPlaylist currentPlaylist = playlists.get(selectedPlaylistName);
-        PlayableSong song = new Song(title, "Unknown Artist"); // Assuming artist name is not known
-        currentPlaylist.addSong(song);
-        resultArea.append("Added song '" + title + "' to " + selectedPlaylistName + ".\n");
-    }
-
-    // Method to search the playlists based off song title
-    private void searchSong(String searchText) {
-        boolean found = false;
-        for (Map.Entry<String, StudentPlaylist> entry : playlists.entrySet()) {
-            StudentPlaylist playlist = entry.getValue();
-            for (PlayableSong song : playlist.getSongs()) {
-                if (song.getTitle().equalsIgnoreCase(searchText)) {
-                    resultArea.append("Found '" + song.getTitle() + "' by " + song.getArtist() + " in " + entry.getKey() + "\n");
-                    lastFoundPlaylistName = entry.getKey(); // Store the playlist name where the song was found
-                    found = true;
-                    break; // Break if song is found
-                }
-            }
-            if (found) break; // Break the outer loop if song is found
-        }
-
-        if (!found) {
-            resultArea.append("No matches found for '" + searchText + "'.\n");
-        }
-    }
-
-    // Method to search for a playlist based off the music artist
-    private void searchByArtist(String searchText) {
-        boolean found = false;
-        for (Map.Entry<String, StudentPlaylist> entry : playlists.entrySet()) {
-            StudentPlaylist playlist = entry.getValue();
-            for (PlayableSong song : playlist.getSongs()) {
-                if (song.getArtist().equalsIgnoreCase(searchText)) {
-                    resultArea.append("Found '" + song.getTitle() + "' by " + searchText + " in " + entry.getKey() + "\n");
-                    lastFoundPlaylistName = entry.getKey(); // Store the playlist name where the artist's song was found
-                    found = true;
-                }
-            }
-        }
-
-        if (!found) {
-            resultArea.append("No songs by '" + searchText + "' found in any playlist.\n");
-        }
-    }
-
-    
-    // Method to remove song from playlist selected
-    private void removeSong() {
-        String title = songTitleField.getText().trim();
-        if (title.isEmpty()) {
-            resultArea.append("Please enter a song title to remove.\n");
-            return;
-        }
-
-        String selectedPlaylistName = (String) playlistSelector.getSelectedItem();
-        StudentPlaylist currentPlaylist = playlists.get(selectedPlaylistName);
-        if (currentPlaylist != null && currentPlaylist.removeSong(title)) {
-            resultArea.append("Removed song '" + title + "' from " + selectedPlaylistName + ".\n");
-        } else {
-            resultArea.append("Song '" + title + "' not found in " + selectedPlaylistName + ".\n");
-        }
-    }
-
-    // Method to display playlists
-    private void displayPlaylist() {
-        if (lastFoundPlaylistName != null) {
-            displaySpecificPlaylist(lastFoundPlaylistName);
-            lastFoundPlaylistName = null; // Reset after displaying
-        } else {
-            String selectedPlaylistName = (String) playlistSelector.getSelectedItem();
-            displaySpecificPlaylist(selectedPlaylistName);
-        }
-    }
-
-    // Method to display a specific playlist when selected
-    private void displaySpecificPlaylist(String playlistName) {
-        StudentPlaylist playlist = playlists.get(playlistName);
-        if (playlist == null) {
-            resultArea.append("No playlist selected or available.\n");
-            return;
-        }
-
-        resultArea.append("Playlist (" + playlist.getPlaylistName() + "):\n");
-        for (PlayableSong song : playlist.getSongs()) {
-            resultArea.append(song.getTitle() + " by " + song.getArtist() + "\n");
+    // Add a list of songs to both the playlist and the hashmap
+    private void addSongs(ArrayList<Song> songs) {
+        for (Song song : songs) {
+            playlist.add(song);
+            songMap.put(song.getTitle().toLowerCase(), song);
         }
     }
     
-    // Main method, the entry point of the program
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(PlaylistGUI::new); // Ensures that the GUI is created in the Event Dispatch Thread
+    @Override
+    public boolean hasSong(String songName) {
+        return songMap.containsKey(songName.toLowerCase());
+    }
+    
+    @Override
+    public String getPlaylistName() {
+        return "MiguelBaez_Playlist";
+    }
+
+    @Override
+    public LinkedList<PlayableSong> getSongs() {
+        return playlist;
+    }
+
+    // Method to add a single song to both the playlist and the hashmap
+    public void addSong(PlayableSong song) {
+        playlist.add(song);
+        songMap.put(song.getTitle().toLowerCase(), song);
+    }
+
+    // Method to remove a song from both the playlist and the hashmap  
+    public boolean removeSong(String songTitle) {
+        // Assuming songTitle is the key in songMap
+        if (songMap.containsKey(songTitle.toLowerCase())) {
+            PlayableSong song = songMap.remove(songTitle.toLowerCase());
+            playlist.remove(song);
+            return true; // Song was found and removed
+        }
+        return false; // Song was not found
     }
 }
+
 ```
-<img src="EnhancementOne.png"> 
+<img src="EnhancementTwo.png"> 
