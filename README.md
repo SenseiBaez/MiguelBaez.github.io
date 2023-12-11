@@ -7,7 +7,7 @@
 A code review is meant to improve the quality of the code being reviewed. It can be used to share knowledge, maintain consistency, and mentor and teach. 
 
 <center>
-  <a href="https://youtu.be/e_8JP0hHyc0">
+  <a href="https://youtu.be/e_8JP0hHyc0" title="Click me to view the code review">
     <img src="Newthumbnail.png" height=300>
   </a>
 </center>
