@@ -98,9 +98,87 @@ I incorporated feedback into the code, see below. My original code did not have 
 
 
 ### <pre align="center">Original Project </pre>
-The code for the first two enhancements was shared as the code used was the original jukebox player code. The original jukebox player did not have the functionality to search for a playlist nor the ability to search for a song.
-This was the functionality that was added by me as well as creating the actual GUI to demonstrate the added functionality.
+The code for the first two enhancements was shared as the code used was the original Jukebox player code. The original jukebox player did not have the functionality to search for a playlist nor the ability to search for a song.
+This was the functionality that was added by me as well as creating the actual GUI to demonstrate the added functionality. The original project's Jukebox player class did not have the functionality to search by song only a basic capability to search the playlist.
+Here is the original code that controlled the commands that was tied to the Jukebox Player.
+```
+public class CommandManager {
+	
+	public CommandManager(){
+	}
+	
+	// Method to print the main menu
+	void printMainMenu(){
+		System.out.println("\n\nWelcome to SNHU Jukebox Playlist Music!");
+		System.out.println("Enter Student Playlist Name (Example: TestStudent1_Playlist): ");
+		System.out.println("Quit: quit");
+		System.out.print("Enter a Command : ");
+	}
+	
+	String getCommand(){
+		String command="";
+		try{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			command = br.readLine();
+		}
+		catch(Exception e){
+			System.out.println("Something went wrong with the system input!   Please try again.");
+		}
+		return command;
+	}
+	
+	String parseCommand(String command){
+		String studentPlaylistRequested ="";
+		if(command!=null && command.length()>0){
+			studentPlaylistRequested = command;
+		}
+		else{
+			System.out.println("Please enter a valid command.");
+		}
+		return studentPlaylistRequested;
+	}
+}
+```
 
 ### <pre align="center">Final Design </pre>
-
+The final project now has the functionality to search by song name and by artist to locate the playlist that the user may be searching for. It also now has a GUI to demonstrate the added functionality. Here is the code for the final version of the class that
+controls the commands for the Jukebox Player and this class provides the functionality to the Jukebox Player GUI.
+```
+public class CommandManager {
+	
+	public CommandManager(){
+	}
+	
+	// Method to print the main menu
+	void printMainMenu(){
+		System.out.println("\n\nWelcome to SNHU Jukebox Playlist Music!");
+		System.out.println("Enter Student Playlist Name (Example: TestStudent1_Playlist): ");
+		System.out.println("Quit: quit");
+		System.out.print("Enter a Command : ");
+	}
+	
+	String getCommand(){
+		String command="";
+		try{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			command = br.readLine();
+		}
+		catch(Exception e){
+			System.out.println("Something went wrong with the system input!   Please try again.");
+		}
+		return command;
+	}
+	
+	String parseCommand(String command){
+		String studentPlaylistRequested ="";
+		if(command!=null && command.length()>0){
+			studentPlaylistRequested = command;
+		}
+		else{
+			System.out.println("Please enter a valid command.");
+		}
+		return studentPlaylistRequested;
+	}
+}
+```
 <img src="EnhancementOne.png"> 
