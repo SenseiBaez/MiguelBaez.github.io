@@ -19,6 +19,8 @@ expand the functionality of the GUI.
   </a>
 </center>
 
+<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/src/snhu/jukebox/playlist/JukeboxPlayerGUI.java">code</a>.</code>
+
 #### Algorithms and Data Structures
 
 The second artifact is implementing a HashMap in the student playlists and creating a GUI to showcase its functionality.
@@ -29,6 +31,8 @@ The second artifact is implementing a HashMap in the student playlists and creat
   </a>
 </center>
 
+<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/src/snhu/student/playlists/PlaylistGUI.java">code</a>.</code>
+
 #### Databases
 
 The third artifact was creating a database from all the user data from the Jukebox player. The database was created using SQL and the GUI was created using Python.
@@ -38,5 +42,7 @@ The third artifact was creating a database from all the user data from the Jukeb
     <img src="EnhancementThree.png" height=600>
   </a>
 </center>
+
+<code>Click here to see the <a href="https://github.com/SenseiBaez/MiguelBaez.github.io/blob/master/PlaylistDataGUI.py">code</a>.</code>
 
 ## Professional Self-Assessment
