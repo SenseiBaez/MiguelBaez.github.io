@@ -6,6 +6,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * StudentList.java
+ * 
+ * Author: Miguel Baez
+ * Contact: miguel.baez-flores@snhu.edu
+ * Date: November 15, 2023
+ * Version: 2.0
+ * 
+ * Purpose:
+ * This class manages a collection of student profiles within the jukebox playlist system.
+ * It maintains a mapping of playlist names to student profiles, each profile consisting of a 
+ * student's name and their associated playlist. The class provides functionalities to retrieve
+ * a list of student names and to get specific student profiles based on playlist names.
+ * 
+ * Implementation Notes:
+ * - The class uses a HashMap to store student profiles, ensuring efficient retrieval.
+ * - The student profile initialization is hardcoded with specific playlist names and students.
+ * 
+ * Usage:
+ * This class can be utilized in a larger music management system where information about
+ * students and their respective playlists needs to be accessed or displayed.
+ * 
+ * 
+ * Revision History:
+ * - 2.0: Updated class with HashMap to store student profiles
+ */
+
+
 public class StudentList {
 
     private Map<String, Student> studentProfiles;
@@ -25,7 +53,6 @@ public class StudentList {
     }
 
     public List<String> getStudentsNames() {
-    
         return studentProfiles.keySet().stream().collect(Collectors.toList());
     }
 
@@ -33,4 +60,3 @@ public class StudentList {
         return studentProfiles.get(playlistName);
     }
 }
-
