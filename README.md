@@ -1,4 +1,4 @@
-# Computer Science Capstone
+# <center>Computer Science Capstone<center>
   
 ## <center>CS-499 | SNHU</center>
 
