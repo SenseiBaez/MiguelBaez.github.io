@@ -145,7 +145,7 @@ I incorporated feedback into the code, see below. My original code did not have 
 
 
 ### <pre align="center">Original Project </pre>
-The code for the first two enhancement was shared as the code used was the original jukebox player code. The original jukebox player did not have the functionality to search for a playlist nor the ability to search for a song.
+The code for the first two enhancements was shared as the code used was the original jukebox player code. The original jukebox player did not have the functionality to search for a playlist nor the ability to search for a song.
 This was the functionality that was added by me as well as creating the actual GUI to demonstrate the added functionality.
 
 ### <pre align="center">Final Design </pre>
